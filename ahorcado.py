@@ -1,5 +1,6 @@
 import random
 
+
 class juegoAhorcado:
     ESTADOS = [
         r"""
@@ -79,10 +80,12 @@ class juegoAhorcado:
 
     def jugar(self):
         NombreJugador = input('Dame tu nombre: ')
+        categoria = random.choice(self.Clases)
+        print(f'Estás jugando en la categoría {categoria}.')
+
         LetrasIncorrectas = []
         LetrasCorrectas = []
 
-        categoria = random.choice(self.Clases)
         if categoria == 'FRUTAS':
             secreto = random.choice(self.Frutas)
         elif categoria == 'ANIMALES':
