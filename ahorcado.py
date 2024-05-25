@@ -69,82 +69,82 @@ class juegoAhorcado:
     / \ |
     ====="""]
 
-    C = 'FRUTAS'
-    W = 'PERA PLATANO UVA MANZANA MELOCOTON KIWI ALBARICOQUE CEREZA CIRUELA FRESA GRANADA HIGO LIMA LIMON MANDARINA NARANJA MELON MORA NISPERO PIÑA POMELO SANDIA '.split()
+    Clase = 'FRUTAS'
+    Palabra = 'PERA PLATANO UVA MANZANA MELOCOTON KIWI ALBARICOQUE CEREZA CIRUELA FRESA GRANADA HIGO LIMA LIMON MANDARINA NARANJA MELON MORA NISPERO PIÑA POMELO SANDIA '.split()
 
 
     def jugar(self):
 
-        li = []
-        lc = []
-        secreto = random.choice(self.W)
+        LetrasIncorrectas = []
+        LetrasCorrectas = []
+        secreto = random.choice(self.Palabra)
 
         while True:
-            self.dibujar(li,lc,secreto)
+            self.dibujar(LetrasIncorrectas,LetrasCorrectas,secreto)
 
-            nl = self.DIMELETRA(li+lc)
+            Letra = self.DimeLetra(LetrasIncorrectas + LetrasCorrectas)
 
-            if nl in secreto:
+            if Letra in secreto:
 
-                lc.append(nl)
+                LetrasCorrectas.append(Letra)
 
 
-                g = True
-                for sl in secreto:
-                    if sl not in lc:
-                        g = False
+                Ganador = True
+                for Solucion in secreto:
+                    if Solucion not in LetrasCorrectas:
+                        Ganador = False
                         break
-                if g:
+                if Ganador:
                     print(self.SALVADO[0])
                     print('¡Bien hecho! la palabra secreta es :', secreto)
                     print('Has ganado!')
                     break
                     break
             else:
-                li.append(nl)
+                LetrasIncorrectas.append(Letra)
 
-                if len(li) == len(self.ESTADOS)-1:
-                    self.dibujar(li,lc,secreto)
+                if len(LetrasIncorrectas) == len(self.ESTADOS)-1:
+                    self.dibujar(LetrasIncorrectas,LetrasCorrectas,secreto)
                     print('Demasiados intentos!')
                     print('La palabra era "{}"'.format(secreto))
                     break
 
 
-    def dibujar(self,li,lc,secreto):
-        print(self.ESTADOS[len(li)])
-        print('La categoría es: ',self.C)
+    def dibujar(self, LetrasIncorrectas, LetrasCorrectas, secreto):
+        print(self.ESTADOS[len(LetrasIncorrectas)])
+        print('La categoría es: ', self.Clase)
         print()
 
         print('Letras incorrectas: ', end='')
-        for let in li:
-            print(let, end=' ')
-        if len(li) == 0 and 0 == len(li):
+        for Letra in LetrasIncorrectas:
+            print(Letra, end=' ')
+        if len(LetrasIncorrectas) == 0 and 0 == len(LetrasIncorrectas):
             print('No hay letras incorrectas.')
-        if len(li) == len(li)+1:
+        if len(LetrasIncorrectas) == len(LetrasIncorrectas)+1:
             print('Letras diferentes.')
-        if len(li) == len(li) + 2:
+        if len(LetrasIncorrectas) == len(LetrasIncorrectas) + 2:
             print('No coinciden.')
 
 
 
         print()
 
-        spa = ['_']*len(secreto)
+        Espacio = ['_']*len(secreto)
 
         for i in range(len(secreto)):
-            if secreto[i] in lc:
-                spa[i] = secreto[i]
+            if secreto[i] in LetrasCorrectas:
+                Espacio[i] = secreto[i]
 
-        print(' '.join(spa))
+        print(' '.join(Espacio))
 
 
-    def DIMELETRA(self, ya):
+    def DimeLetra(self, LetraAdivinada):
         while True:
             print('Adivina una letra.')
             adivina = input('> ').upper()
             if len(adivina) != 1:
                 print('Introduce una única letra.')
-            elif adivina  in ya:
+            elif adivina  in LetraAdivinada:
                 print('Esa letra ya la sabías. Elige otra vez.')
             elif not  adivina.isalpha():
                 print('Introduce una LETRA.')
