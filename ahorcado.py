@@ -81,14 +81,13 @@ class juegoAhorcado:
 
         while True:
             self.dibujar(LetrasIncorrectas,LetrasCorrectas,secreto)
+            IntentosRestantes=self.IntentosRestantes(LetrasIncorrectas)
+            print(f'te quedan {IntentosRestantes} intentos.')
 
             Letra = self.DimeLetra(LetrasIncorrectas + LetrasCorrectas)
 
             if Letra in secreto:
-
                 LetrasCorrectas.append(Letra)
-
-
                 Ganador = True
                 for Solucion in secreto:
                     if Solucion not in LetrasCorrectas:
@@ -151,6 +150,8 @@ class juegoAhorcado:
 
             else:
                 return adivina
+    def IntentosRestantes(self, LetrasIncorrectas):
+        return len(self.ESTADOS)-1 -len(LetrasIncorrectas)
 
 
 if __name__ == '__main__':
