@@ -74,7 +74,7 @@ class juegoAhorcado:
 
 
     def jugar(self):
-
+        NombreJugador = input('Dame tu nombre: ')
         LetrasIncorrectas = []
         LetrasCorrectas = []
         secreto = random.choice(self.Palabra)
@@ -97,7 +97,7 @@ class juegoAhorcado:
                 if Ganador:
                     print(self.SALVADO[0])
                     print('¡Bien hecho! la palabra secreta es :', secreto)
-                    print('Has ganado!')
+                    print('Has ganado '+(NombreJugador))
                     break
                     break
             else:
