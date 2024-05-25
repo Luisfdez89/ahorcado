@@ -84,8 +84,13 @@ class juegoAhorcado:
 
             Letra = self.DimeLetra(LetrasIncorrectas + LetrasCorrectas)
 
-            if Letra in secreto:
+            if Letra == "TERMINAR":
+                print(self.ESTADOS[-1])
+                print('Has terminado el juego')
+                print('La palabra era"{}"'.format(secreto))
+                break
 
+            if Letra in secreto:
                 LetrasCorrectas.append(Letra)
 
 
@@ -140,15 +145,16 @@ class juegoAhorcado:
 
     def DimeLetra(self, LetraAdivinada):
         while True:
-            print('Adivina una letra.')
+            print('Adivina una letra, o escrbe TERMINAR para finalizar el juego')
             adivina = input('> ').upper()
-            if len(adivina) != 1:
+            if adivina == "TERMINAR":
+                return adivina
+            elif len(adivina) != 1:
                 print('Introduce una única letra.')
             elif adivina  in LetraAdivinada:
                 print('Esa letra ya la sabías. Elige otra vez.')
             elif not  adivina.isalpha():
                 print('Introduce una LETRA.')
-
             else:
                 return adivina
 
